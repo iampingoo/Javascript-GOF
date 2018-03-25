@@ -2,27 +2,22 @@
 <head>
 <script src="/js/jquery.min.js"></script>
 <script src="Observers.js"></script>
-<script>customElements.define( "extended-checkbox", Subject, {extends: "checkbox"} );</script>
 </head>
 <body>
-Learning JavaScript Design Patterns ISBN978-4-87311-618-1 
+<h1>Learning JavaScript Design Patterns ISBN978-4-87311-618-1</h1> 
 <button id="addNewObserver">Add New Observer checkbox</button>
 <input id="mainCheckbox" type="checkbox"/>
 <div id="observersContainer"></div>
-<div ID="wafer"></div>
 <script>
-    var controlCheckbox;
     $(() => {
-        controlCheckbox = $( "#mainCheckbox" )[ 0 ];
-        var  addBtn     = $( "#addNewObserver" )[ 0 ]
-            ,container  = $( "#observersContainer" )[ 0 ];
+        const controlCheckbox = $( "#mainCheckbox" )[ 0 ]
+             ,container  = $( "#observersContainer" )[ 0 ];
 
         extend( new Subject() ,controlCheckbox );
         $( "#mainCheckbox" ).on( 'click' ,( e ) => {
             $( "#mainCheckbox" )[ 0 ].Notify( $( "#mainCheckbox" )[ 0 ].checked );
         });
 
-        //addBtn[ "onclick" ] = AddNewObserver;
         $( "#addNewObserver" ).on( 'click' ,AddNewObserver );
 
         function AddNewObserver() {
