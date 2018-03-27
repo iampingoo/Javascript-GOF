@@ -1,2 +1,2 @@
 # Javascript-GOF
-Javascript (ES6 + jquery) implematation
+ES6 implematation
