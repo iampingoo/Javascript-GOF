@@ -8,28 +8,7 @@
 <button id="addNewObserver">Add New Observer checkbox</button>
 <input id="mainCheckbox" type="checkbox"/>
 <div id="observersContainer"></div>
-<script>
-    $(() => {
-        const controlCheckbox = $( "#mainCheckbox" )[ 0 ]
-             ,container  = $( "#observersContainer" )[ 0 ];
-
-        extend( new Subject() ,controlCheckbox );
-        $( "#mainCheckbox" ).on( 'click' ,( e ) => {
-            $( "#mainCheckbox" )[ 0 ].Notify( $( "#mainCheckbox" )[ 0 ].checked );
-        });
-
-        $( "#addNewObserver" ).on( 'click' ,AddNewObserver );
-
-        function AddNewObserver() {
-            const check = $( "<input>" ,{ type: "checkbox" } ).appendTo( container )[ 0 ];
-
-            extend( new Observer(), check );
-            check.Update = ( value ) => {
-                check.checked = value;
-            };
-            $( "#mainCheckbox" )[ 0 ].AddObserver( check );
-        };
-    });
-</script>
+<script src="program.js"></script>
 </body>
+<!-- webpack-dev-server -->
 </html>
