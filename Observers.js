@@ -75,12 +75,11 @@ export class ObserverList {
     };
 };
 
-export function extend( obj, extension ) {
+const extend = ( obj, extension ) => {
     for ( var key in obj ) {
         extension[ key ] = obj[ key ];
     }
 }
-
 
 export class Subject {
     constructor() {
@@ -112,3 +111,6 @@ export class Subject {
 export function Observer() {
     this.Update= () => {};
 }
+
+// 変数のexport
+export { extend };
