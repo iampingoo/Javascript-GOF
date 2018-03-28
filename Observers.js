@@ -1,4 +1,4 @@
-class ObserverList {
+export class ObserverList {
     constructor() {
         this.observerList = [];
 
@@ -75,14 +75,14 @@ class ObserverList {
     };
 };
 
-function extend( obj, extension ) {
+export function extend( obj, extension ) {
     for ( var key in obj ) {
         extension[ key ] = obj[ key ];
     }
 }
 
 
-class Subject {
+export class Subject {
     constructor() {
         this.observers = new ObserverList();
 
@@ -109,6 +109,6 @@ class Subject {
  *
  * @usage   extend( new Observer(), myObs ); myObs.Update = myObs.mydata...
  */
-function Observer() {
+export function Observer() {
     this.Update= () => {};
 }
