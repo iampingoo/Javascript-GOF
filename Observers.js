@@ -108,8 +108,10 @@ export class Subject {
  *
  * @usage   extend( new Observer(), myObs ); myObs.Update = myObs.mydata...
  */
-export function Observer() {
-    this.Update= () => {};
+export class Observer {
+    constructor() {
+        this.Update = () => {};
+    };
 }
 
 // 変数のexport
