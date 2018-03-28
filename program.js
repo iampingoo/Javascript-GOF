@@ -1,4 +1,6 @@
+import {Subject,Observer,extend} from "./Observers.js";
 // DOMへの参照
+
 const    controlCheckbox    = document.getElementById( "mainCheckbox" )
         ,addBtn             = document.getElementById( "addNewObserver")
         ,container          = document.getElementById( "observersContainer" );
