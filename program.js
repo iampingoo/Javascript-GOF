@@ -1,6 +1,6 @@
 import {Subject,Observer,extend} from "./Observers.js";
-// DOMへの参照
 
+// DOMへの参照
 const    controlCheckbox    = document.getElementById( "mainCheckbox" )
         ,addBtn             = document.getElementById( "addNewObserver")
         ,container          = document.getElementById( "observersContainer" );
@@ -13,10 +13,8 @@ extend( new Subject(), controlCheckbox );
 // チェックボックスをクリックするとオブザーバに通知する
 controlCheckbox.onclick = () => { controlCheckbox.Notify( controlCheckbox.checked ) };
 
-addBtn.onclick          = AddNewObserver;
-
 // 具象オブザーバ
-function AddNewObserver() {
+const AddNewObserver = () => {
     // 追加するチェックボックスを新たに作成
     const check = document.createElement( "input" );
     check.type  = "checkbox";
@@ -35,3 +33,5 @@ function AddNewObserver() {
     // コンテナに項目を追加
     container.appendChild( check );
 }
+
+addBtn.onclick          = AddNewObserver;
