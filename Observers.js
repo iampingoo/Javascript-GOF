@@ -1,72 +1,52 @@
-export class ObserverList {
+class ObserverList extends Array {
     constructor() {
-        this.observerList = [];
-
+        super();
+        
         ObserverList.prototype.Add = function( obj ) {
-            return this.observerList.push( obj );
+            return this.push( obj );
         };
 
         ObserverList.prototype.Count = function() {
-            return this.observerList.length;
+            return this.length;
         };
 
         ObserverList.prototype.Get = function( index ) {
-            if( index > -1 && index < this.observerList.length ) {
-                return this.observerList[ index ];
+            if( index > -1 && index < this.length ) {
+                return this[ index ];
             }
         };
 
         ObserverList.prototype.Empty = function() {
-            this.observerList = [];
+            this.length = 0;
         };
 
         ObserverList.prototype.Insert = function( obj, index ) {
             var pointer = -1;
 
             if( index === 0 ) {
-                this.observerList.unshift( obj );
+                this.unshift( obj );
                 pointer = index;
-            } else if( index === this.observerList.length ) {
-                this.observerList.push( obj );
+            } else if( index === this.length ) {
+                this.push( obj );
                 pointer = index;
-            }
-            return pointer;
-        };
-
-        ObserverList.prototype.IndexOf = function( obj, startIndex ) {
-            let  i = startIndex
-                ,pointer = -1;
-
-            while( i < this.observerList.legth ) {
-                if( this.observerList[ i ] === obj ) {
-                    pointer = i;
-                }
-            }
-            i++;
-
-            while( i < this.observerList.length ) {
-                if( this.observerList[ i ] === obj ) {
-                    pointer = i;
-                }
-                i++;
             }
             return pointer;
         };
 
         ObserverList.prototype.RemoveIndexAt = function( index ) {
             if( index === 0 ) {
-                this.observerList.shift();
-            } else if ( index === this.observerList.length - 1 ) {
-                this.observerList.pop();
+                this.shift();
+            } else if ( index === this.length - 1 ) {
+                this.pop();
             } else {
-                this.observerList.splice( index, 1 );
+                this.splice( index, 1 );
             }
         };
 
         ObserverList.prototype.Remove = function( obj ) {
-            for ( let i = 0, len = this.observerList.length; i < len; i++ ) {
-                if ( this.observerList[ i ] === obj ) {
-                    this.observerList.splice( i, 1 );
+            for ( let i = 0, len = this.length; i < len; i++ ) {
+                if ( this[ i ] === obj ) {
+                    this.splice( i, 1 );
                     return true;
                 }
             }
@@ -75,22 +55,17 @@ export class ObserverList {
     };
 };
 
-const extend = ( obj, extension ) => {
-    for ( var key in obj ) {
-        extension[ key ] = obj[ key ];
-    }
-}
-
 export class Subject {
     constructor() {
         this.observers = new ObserverList();
 
         Subject.prototype.AddObserver = function( observer ) {
-            this.observers.Add( observer );
+            //this.observers.Add( observer ); //　AddでもpushでもOK
+            this.observers.push( observer );
         };
 
         Subject.prototype.RemoveObserver = function( observer ) {
-            this.observers.RemoveIndexAt( this.observers.IndexOf( observer ,0 ) );
+            this.observers.RemoveIndexAt( this.observers.indexOf( observer ,0 ) );
         };
 
         Subject.prototype.Notify = function( context ) {
@@ -114,5 +89,10 @@ export class Observer {
     };
 }
 
-// 変数のexport
+const extend = ( obj, extension ) => {
+    for ( var key in obj ) {
+        extension[ key ] = obj[ key ];
+    }
+}
+
 export { extend };
