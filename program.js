@@ -1,4 +1,4 @@
-import {Subject,Observer,extend} from "./Observers.js";
+import { Subject, Observer, extend } from "./Observers.js";
 
 // DOMへの参照
 const    controlCheckbox    = document.getElementById( "mainCheckbox" )
@@ -25,6 +25,11 @@ const AddNewObserver = () => {
     // カスタム更新動作でオーバーライド
     check.Update    = ( value ) => {
         check.checked    = value;
+    };
+
+    // クリックでオブザーバリストから除外(動作をみたいのでチェックボックス自体は消さない)
+    check.onclick = () => {
+        controlCheckbox.RemoveObserver( check )
     };
 
     // メインサブジェクトのオブザーバのリストに新しいオブザーバを追加する
